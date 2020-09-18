@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <header class="jumbotron">
-      <h3>{{content}}</h3>
+      <h1>{{user.username}}</h1>
+      <h3>{{user.id}}</h3>
+      <h3>{{user.email}}</h3>
     </header>
   </div>
 </template>
@@ -13,16 +15,16 @@ export default {
   name: 'User',
   data() {
     return {
-      content: ''
+      user: ''
     };
   },
   mounted() {
     UserService.getUserBoard().then(
       response => {
-        this.content = response.data;
+        this.user = response.data;
       },
       error => {
-        this.content =
+        this.user =
           (error.response && error.response.data) ||
           error.message ||
           error.toString();
